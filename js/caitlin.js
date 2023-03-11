@@ -1,14 +1,41 @@
-import counts from '../data/state-district-ban-counts.csv'
-import us from '../data/states-albers-10m.json'
-import {legend} from "https://api.observablehq.com/@d3/color-legend.js?v=3";
+// import counts from '../data/state-district-ban-counts.csv'
+// import us from '../data/states-albers-10m.json'
+// import {legend} from "https://api.observablehq.com/@d3/color-legend.js?v=3";
+
+let num_bans_per_state;
+let num_banning_districts;
+let us;
+
+d3.json('../data/states-albers-10m.json') 
+    .then(data => { 
+        us = data
+        console.log(us)
+        return d3.csv("../data/state-district-ban-counts.csv")
+
+    })
+    .then(data => { 
+        num_bans_per_state = new Map(data.map(state => [state.state, +state.total_bans]))
+        num_banning_districts = new Map(data.map(state => [state.state, +state.num_districts]))
+        onReady()
+        console.log(num_bans_per_state)
+        console.log(num_banning_districts)
+    })
 
 
-const num_bans_per_state = Object.assign(new Map(d3.csvParse(await counts.text(), 
-            ({state, total_bans}) => [state, +total_bans])), {title: "Number of Bans"})
-const num_banning_districts = Object.assign(new Map(d3.csvParse(await counts.text(), ({state, num_districts}) => [state, +num_districts])))
+// d3.csv("../data/state-district-ban-counts.csv")
+//     .then(data => { 
+//         num_bans_per_state = new Map(data.map(state => [state.state, +state.total_bans]))
+//         num_banning_districts = new Map(data.map(state => [state.state, +state.num_districts]))
+//         console.log(num_bans_per_state)
+//         console.log(num_banning_districts)
+//     })
+
+
+function onReady() {
 const color = d3.scaleLinear().domain([0, 900]).range(["#f0adae", "#e15759"])
 const commaFormat = d3.format(",")
 const path = d3.geoPath()
+
 
 const callout14 = (g, value) => {
     if (!value) return g.style("display", "none"); 
@@ -39,13 +66,13 @@ const callout14 = (g, value) => {
     path.attr("d", `M${-w / 2 - 10},5H-5l5,-5l5,5H${w / 2 + 10}v${h + 20}h-${w + 20}z`);
   }
 
-export default function map {
-    const svg = d3.create("svg")
+
+    const svg = d3.select("#map")
         .attr("viewBox", [0, 0, 975, 610]);
 
-    svg.append("g")
-        .attr("transform", "translate(610,20)")
-        .append(() => legend({color, title: num_bans_per_state.title, width: 260, height: 55}));
+    // svg.append("g")
+    //     .attr("transform", "translate(610,20)")
+    //     .append(() => d3.legend({color, width: 260, height: 55}));
 
     svg.append("g")
         .selectAll("path")
@@ -80,5 +107,5 @@ export default function map {
             .attr("stroke", null)
             .lower();
         });
-    return svg.node();
-}
+  
+    }
