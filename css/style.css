@@ -1,6 +1,17 @@
 .container {
   margin-top: 100px;
 }
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+}
+.header {
+  font-weight: bold;
+}
+.scroll-table {
+  overflow-y: auto;
+  height: 400px;
+}
 
 .section {
   margin: 150px 0px;

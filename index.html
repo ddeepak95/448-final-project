@@ -56,7 +56,13 @@
           examine distribution of bans over specific school districts in each
           state.
         </p>
-        <svg id="map"></svg>
+        <div class="flex-container">
+          <svg id="map"></svg>
+          <div>
+            <p id="statename" class="header"></p>
+            <div id="district-table" class="scroll-table"></div>
+         </div>
+       </div>
       </div>
 
       <div class="section wordCloudChart">
@@ -105,12 +111,11 @@
       </div>
 
     </div>
-
+    <script src="js/caitlin.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <script src="js/main.js"></script>
     <script src="js/deepak.js"></script>
-    <script src="js/caitlin.js"></script>
     <script src="js/jiwon.js"></script>
   </body>
 </html>
