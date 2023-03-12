@@ -1,7 +1,3 @@
-// import counts from '../data/state-district-ban-counts.csv'
-// import us from '../data/states-albers-10m.json'
-// import {legend} from "https://api.observablehq.com/@d3/color-legend.js?v=3";
-
 let num_bans_per_state;
 let num_banning_districts;
 let us;
@@ -20,16 +16,6 @@ d3.json('../data/states-albers-10m.json')
         console.log(num_bans_per_state)
         console.log(num_banning_districts)
     })
-
-
-// d3.csv("../data/state-district-ban-counts.csv")
-//     .then(data => { 
-//         num_bans_per_state = new Map(data.map(state => [state.state, +state.total_bans]))
-//         num_banning_districts = new Map(data.map(state => [state.state, +state.num_districts]))
-//         console.log(num_bans_per_state)
-//         console.log(num_banning_districts)
-//     })
-
 
 function onReady() {
 const color = d3.scaleLinear().domain([0, 900]).range(["#f0adae", "#e15759"])
