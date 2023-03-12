@@ -1,6 +1,7 @@
 let num_bans_per_state;
 let num_banning_districts;
 let us;
+let state_districts;
 
 d3.json('../data/states-albers-10m.json') 
     .then(data => { 
@@ -15,12 +16,78 @@ d3.json('../data/states-albers-10m.json')
         onReady()
         console.log(num_bans_per_state)
         console.log(num_banning_districts)
+        return d3.json('../data/district-breakdown.json')
+    })
+    .then(data => { 
+        state_districts = data
+        console.log(state_districts)
     })
 
 function onReady() {
-const color = d3.scaleLinear().domain([0, 900]).range(["#f0adae", "#e15759"])
+const color = d3.scaleLinear().domain([0, 900]).range(["#f2e3e1", "#e15759"])
 const commaFormat = d3.format(",")
 const path = d3.geoPath()
+
+function getDistrictBreakdown (state_districts) {
+    let districts = []
+    for (let i = 0; i < state_districts.length; i++) {
+        let district_name = Object.keys(state_districts[i])[0]
+        let district_count = state_districts[i][district_name]
+        districts.push({"District": district_name, "Number of Books": district_count})
+        }
+    return districts
+}
+function stateName (name) {
+    d3.select("state_text")
+    .remove()
+    var state_text = d3.select("#statename").append('state_text')
+    .text(name)
+    return state_text
+
+}
+function tabulate(data, columns) {
+   
+     d3.select("table")
+            .remove()
+	var table = d3.select('#district-table').append('table')
+    if (data.length == 0) {
+        table
+        .text("No book bans!")
+    }
+    else {
+        var thead = table.append('thead')
+	    var	tbody = table.append('tbody');
+
+
+        // append the header row
+        thead.append('tr')
+        .selectAll('th')
+        .data(columns).enter()
+        .append('th')
+            .text(function (column) { return column; });
+
+        // create a row for each object in the data
+        var rows = tbody.selectAll('tr')
+        .data(data)
+        .enter()
+        .append('tr');
+
+        // create a cell in each row for each column
+        var cells = rows.selectAll('td')
+        .data(function (row) {
+            return columns.map(function (column) {
+            return {column: column, value: row[column]};
+            });
+        })
+        .enter()
+        .append('td')
+            .text(function (d) { return d.value; });
+
+    }
+	
+
+  return table;
+}
 
 
 const callout14 = (g, value) => {
@@ -72,12 +139,20 @@ const callout14 = (g, value) => {
     svg.append("path") 
     const tooltip = svg.append("g");
     svg.selectAll("path")
+        .on("click", function(d) {
+            tabulate(getDistrictBreakdown(state_districts[d.properties.name]), ['District', 'Number of Books'])
+            stateName(d.properties.name)
+            d3.select(this)
+            .attr("stroke", "black")
+            .raise();
+        })
         .on("touchmove mousemove", function(d) { 
         tooltip.call(
             callout14, 
             `${d.properties.name} 
             Total # Bans: ${commaFormat(num_bans_per_state.get(d.properties.name))}
-            # Banning Districts: ${commaFormat(num_banning_districts.get(d.properties.name))}` 
+            # Banning Districts: ${commaFormat(num_banning_districts.get(d.properties.name))}`
+            // ${getDistrictBreakdown(state_districts[d.properties.name])[0]} : ${getDistrictBreakdown(state_districts[d.properties.name])[1]} ` 
         );
         tooltip.attr(
             "transform",
