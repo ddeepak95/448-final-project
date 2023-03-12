@@ -15,12 +15,24 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/skeleton.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/themes/light.css"
+    />
     <script src="https://unpkg.com/topojson@3"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+    <script src="js/wordCloudData.js"></script>
   </head>
   <body>
     <div class="container">
@@ -35,22 +47,73 @@
         significant impact of book bans in more detail. More information
         regarding this issue can be found here.
       </p>
-    </div>
-    <div class="container">
-      <h4>Where do book bans in the US occur the most? </h4>
-      <p>
-        Here, we map the absolute frequency of book bans per state and also 
-        examine distribution of bans over specific school districts in each state.
-      </p>
-    <div class="flex-container">
-      <svg id="map"></svg>
-      <div>
-        <p id="statename" class="header"></p>
-        <div id="district-table" class="scroll-table"></div>
+
+
+      <div class="section bookBansMap">
+        <h4>Where do book bans in the US occur the most?</h4>
+        <p>
+          Here, we map the absolute frequency of book bans per state and also
+          examine distribution of bans over specific school districts in each
+          state.
+        </p>
+        <div class="flex-container">
+          <svg id="map"></svg>
+          <div>
+            <p id="statename" class="header"></p>
+            <div id="district-table" class="scroll-table"></div>
+         </div>
+       </div>
       </div>
-    </div>
+
+      <div class="section wordCloudChart">
+        <h4>What's in the title?</h4>
+        <p>
+          Here's a word cloud of the most commonly occurring words in the titles of the banned books!
+        </p>
+        <div id="titleWordCloud">
+          <div style="display: none; left: 100px" id="hoverBox">
+            <p class="bookCount"><span id="onHoverText">Hover</span> Book Titles</p>
+            <p class="instruction">Click to view the book titles below!</p>
+          </div>
+        </div>
+        <div id="bookListHoverBox" style="display: none">
+          <div class="bookListHoverBoxContent">
+            <p class="bookListHoverTextLine bookListTitle">
+              <span id="bookListTitle">Book Title</span>
+            </p>
+            <p class="bookListHoverTextLine">
+              <span id="bookListAuthor">Author Name</span>
+            </p>
+            <hr />
+            <p
+              class="bookListHoverTextLine bookListBannedCount"
+              id="bookListBannedCountLine"
+            >
+              Banned in <span id="bookListBannedCount">Ban Count</span>
+            </p>
+            <table>
+              <thead>
+                <tr class="bookListPlaceTableRow">
+                  <td>State</td>
+                  <td>Districts</td>
+                </tr>
+              </thead>
+              <tbody id="bookListPlaceTableContent"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="booksListContainer">
+          <p class="booksListTitle">Titles with word <b><span id="bookListTitleWord"></span></b></p>
+          <div id="booksList"></div>
+          <div id="booksListContainerBtn" style="display: none;"></div></div>
+        </div>
+      </div>
+      </div>
+
     </div>
     <script src="js/caitlin.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <script src="js/main.js"></script>
     <script src="js/deepak.js"></script>
     <script src="js/jiwon.js"></script>

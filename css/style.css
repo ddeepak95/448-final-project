@@ -13,7 +13,134 @@
   height: 400px;
 }
 
+.section {
+  margin: 150px 0px;
+}
+
+.section:nth-of-type(1) {
+  margin-top: 50px;
+}
+
 p {
   font-size: 1.2em;
   line-height: 2em;
+}
+
+#hoverBox {
+  background-color: #fff;
+  position: fixed;
+  border: solid 1px #ccc;
+  padding: 10px 20px;
+}
+
+#hoverBox * {
+  margin: 0px;
+}
+
+#hoverBox .bookCount {
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+#hoverBox .instruction {
+  font-size: 0.9em;
+}
+
+#words * {
+  cursor: pointer;
+}
+
+#booksList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#booksList .bookTitle {
+  cursor: help;
+  background-color: #e9e9e9;
+  padding: 5px 20px;
+  margin: 5px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.bookListHoverBoxContent {
+  /* Your styling here. Example: */
+  padding: 2rem;
+}
+
+.bookListHoverBoxContent .bookListHoverTextLine {
+  margin: 0px;
+  line-height: 1.4em;
+}
+
+.bookListHoverBoxContent .bookListTitle {
+  font-size: 1.2em;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+#booksListContainerBtn {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#booksListContainer a {
+  cursor: pointer;
+  background-color: #1eaedb;
+
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+#booksListContainer a:hover {
+  background-color: #0fa0ce;
+}
+
+.bookListHoverBoxContent .bookListBannedCount {
+  font-size: 1.2em;
+  font-weight: 800;
+  margin-bottom: 5px;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.2);
+  padding: 5px 20px;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.bookListHoverBoxContent hr {
+  margin: 15px 0px;
+}
+
+.bookListHoverBoxContent #bookListAuthor {
+  font-size: 0.9em;
+  font-weight: 800;
+  color: grey;
+}
+
+.bookListHoverBoxContent .bookListPlaceTableRow {
+  width: 100%;
+}
+.bookListHoverBoxContent table {
+  width: 100%;
+}
+
+.bookListHoverBoxContent .stateName {
+  font-weight: 800;
+}
+
+.bookListHoverBoxContent .countBar {
+  font-weight: 800;
+  color: rgba(255, 0, 0, 0.8);
+  letter-spacing: -4px;
+}
+
+.booksListTitle {
+  text-align: center;
+  margin-bottom: 0px;
 }
