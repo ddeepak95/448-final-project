@@ -28,7 +28,7 @@ const color = d3.scaleLinear().domain([0, 900]).range(["#f2e3e1", "#e15759"])
 const commaFormat = d3.format(",")
 const path = d3.geoPath()
 
-function getDistrictBreakdown (state_districts) {
+function getDistrictBreakdownTable (state_districts) {
     let districts = []
     for (let i = 0; i < state_districts.length; i++) {
         let district_name = Object.keys(state_districts[i])[0]
@@ -37,6 +37,92 @@ function getDistrictBreakdown (state_districts) {
         }
     return districts
 }
+function getDistrictBreakdownGraph(state_districts) {
+    let districts = []
+    for (let i = 0; i < state_districts.length; i++) {
+        let district_name = Object.keys(state_districts[i])[0]
+        let district_count = state_districts[i][district_name]
+        districts.push({district: district_name, bans: district_count})
+        }
+    return districts
+}
+
+
+function drawBarChart (data, chartTitle) {
+    const margin = ({top: 40, right: 20, bottom: 40, left: 100}) // save room for axis labels
+    const svgWidth = 300
+    const svgHeight = 300
+    const width = svgWidth - margin.left - margin.right
+    const height = svgHeight - margin.top - margin.bottom
+
+    const barChart = d3.select("#districtbargraph")
+    barChart.attr("width", svgWidth);
+    barChart.attr("height", svgHeight);
+    
+    if (!barChart.select(".barGroup").empty()) { // allow for redrawing upon new click
+        barChart.select(".barGroup").remove()
+      }
+    const xScale = d3.scaleBand() // useful for ordinal or categorical data
+    .domain(data.sort((a, b) => d3.descending(a.bans, b.bans))) // sort by descending frequency
+    .range([0, width])
+    .padding(0.1);
+      
+    // add x-axis
+    barChart.append("g") // append group to svg
+      .attr('transform', `translate(${margin.left}, ${height + margin.top})`) // offset starting point of x axis  to the right and down from the top by height + margin value
+      .call(d3.axisBottom(xScale));
+  
+    const yScale = d3.scaleLinear()
+    .domain([0, d3.max(data, d => d.bans)])  
+    .range([height, 0]);  
+  
+    // add add y-axis
+    barChart.append("g")
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .call(d3.axisLeft(yScale));
+  
+    // add chart title
+    barChart.append("text")
+      .attr("x", svgWidth / 2) // move to middle of canvas
+      .attr("y", 20)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "20px")
+      .attr("font-weight", "bold")
+      .text(chartTitle);
+    
+    // add x-axis title
+    barChart.append("text")
+      .attr("x", margin.left + width / 2)
+      .attr("y", svgHeight - 5)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "14px")
+      .text("District");
+    
+    // add y-axis title, remember that all transformations are around the (0, 0) origin
+    barChart.append("text")
+      .attr("x", -(margin.top + height / 2)) // move to center of lefthand side
+      .attr("y", 15)
+      .attr("transform", "rotate(-90)")  // rotate it by -90 degrees
+      .attr("text-anchor", "middle")
+      .attr("font-size", "14px")
+      .text("Number of Bans");
+    
+    // draw the rectangles here
+     const barGroup = barChart.append("g") // create a group to keep the bars
+      .attr("class", "barGroup")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`); // shift all bars by the margin offset
+  
+     barGroup.selectAll("rect")
+      .data(data)
+      .join("rect")
+      .attr("x", d => xScale(d.district))
+      .attr("y", d => yScale(d.bans))
+      .attr("width", xScale.bandwidth())
+      .attr("height", d => height - yScale(d.bans)) //
+      .attr("fill", "steelblue")
+
+  }
+
 function stateName (name) {
     d3.select("state_text")
     .remove()
@@ -90,6 +176,7 @@ function tabulate(data, columns) {
 }
 
 
+
 const callout14 = (g, value) => {
     if (!value) return g.style("display", "none"); 
     g
@@ -140,10 +227,11 @@ const callout14 = (g, value) => {
     const tooltip = svg.append("g");
     svg.selectAll("path")
         .on("click", function(d) {
-            tabulate(getDistrictBreakdown(state_districts[d.properties.name]), ['District', 'Number of Books'])
+            tabulate(getDistrictBreakdownTable(state_districts[d.properties.name]), ['District', 'Number of Books'])
             stateName(d.properties.name)
+            drawBarChart(getDistrictBreakdownGraph(state_districts[d.properties.name]), d.properties.name);            
             d3.select(this)
-            .attr("stroke", "black")
+            .attr("stroke", "white")
             .raise();
         })
         .on("touchmove mousemove", function(d) { 
@@ -152,14 +240,13 @@ const callout14 = (g, value) => {
             `${d.properties.name} 
             Total # Bans: ${commaFormat(num_bans_per_state.get(d.properties.name))}
             # Banning Districts: ${commaFormat(num_banning_districts.get(d.properties.name))}`
-            // ${getDistrictBreakdown(state_districts[d.properties.name])[0]} : ${getDistrictBreakdown(state_districts[d.properties.name])[1]} ` 
         );
         tooltip.attr(
             "transform",
             `translate(${d3.mouse(this)[0]},${d3.mouse(this)[1]})`
         );
         d3.select(this)
-            .attr("stroke", "white")
+            .attr("stroke", "black")
             .raise();
         })
         .on("touchend mouseleave", function() {
