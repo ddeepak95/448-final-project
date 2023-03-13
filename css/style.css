@@ -12,7 +12,16 @@
   overflow-y: auto;
   height: 400px;
 }
+.map-highlighted-border {
+  stroke: black;
+  stroke-width: 3px !important;
 
+}
+.map-hovered-border {
+  stroke: black;
+  stroke-width: 1px;
+
+}
 .section {
   margin: 150px 0px;
 }

@@ -49,28 +49,32 @@ function getDistrictBreakdownGraph(state_districts) {
 
 
 function drawBarChart (data, chartTitle) {
-    const margin = ({top: 40, right: 20, bottom: 40, left: 100}) // save room for axis labels
-    const svgWidth = 300
-    const svgHeight = 300
+    const margin = ({top: 40, right: 20, bottom: 140, left: 100}) // save room for axis labels
+    const svgWidth = 220 + data.length * 10
+    const svgHeight = 400 
     const width = svgWidth - margin.left - margin.right
     const height = svgHeight - margin.top - margin.bottom
 
     const barChart = d3.select("#districtbargraph")
     barChart.attr("width", svgWidth);
     barChart.attr("height", svgHeight);
+    barChart.html("");
     
-    if (!barChart.select(".barGroup").empty()) { // allow for redrawing upon new click
-        barChart.select(".barGroup").remove()
-      }
+   
+    console.log(data.sort((a, b) => d3.descending(a.bans, b.bans)))
     const xScale = d3.scaleBand() // useful for ordinal or categorical data
-    .domain(data.sort((a, b) => d3.descending(a.bans, b.bans))) // sort by descending frequency
+    .domain(data.sort((a, b) => d3.descending(a.bans, b.bans)).map(state => state.district)) // sort by descending frequency
     .range([0, width])
-    .padding(0.1);
+    .padding(0.2);
       
     // add x-axis
     barChart.append("g") // append group to svg
       .attr('transform', `translate(${margin.left}, ${height + margin.top})`) // offset starting point of x axis  to the right and down from the top by height + margin value
-      .call(d3.axisBottom(xScale));
+      .call(d3.axisBottom(xScale)).selectAll("text")
+      .attr("transform", "translate(-10,1)rotate(-45)")
+      .style("text-anchor", "end")
+      .style("font-weight", "bold")
+      .style("font-size", 8);
   
     const yScale = d3.scaleLinear()
     .domain([0, d3.max(data, d => d.bans)])  
@@ -97,6 +101,7 @@ function drawBarChart (data, chartTitle) {
       .attr("text-anchor", "middle")
       .attr("font-size", "14px")
       .text("District");
+      
     
     // add y-axis title, remember that all transformations are around the (0, 0) origin
     barChart.append("text")
@@ -119,7 +124,7 @@ function drawBarChart (data, chartTitle) {
       .attr("y", d => yScale(d.bans))
       .attr("width", xScale.bandwidth())
       .attr("height", d => height - yScale(d.bans)) //
-      .attr("fill", "steelblue")
+      .attr("fill", "#ed937e")
 
   }
 
@@ -227,11 +232,22 @@ const callout14 = (g, value) => {
     const tooltip = svg.append("g");
     svg.selectAll("path")
         .on("click", function(d) {
-            tabulate(getDistrictBreakdownTable(state_districts[d.properties.name]), ['District', 'Number of Books'])
-            stateName(d.properties.name)
-            drawBarChart(getDistrictBreakdownGraph(state_districts[d.properties.name]), d.properties.name);            
+            // tabulate(getDistrictBreakdownTable(state_districts[d.properties.name]), ['District', 'Number of Books'])
+            // stateName(d.properties.name)
+            if  (state_districts[d.properties.name].length != 0) {
+                drawBarChart(getDistrictBreakdownGraph(state_districts[d.properties.name]), d.properties.name);         
+            }
+            else {
+                d3.select("#districtbargraph").html("")
+                d3.select("#districtbargraph").append("text")
+                .attr("x", 10)
+                .attr("y", 10)
+                .text("No book bans!")
+            }
+              
+            d3.selectAll(".map-highlighted-border").classed("map-highlighted-border", false)
             d3.select(this)
-            .attr("stroke", "white")
+            .classed("map-highlighted-border", true)
             .raise();
         })
         .on("touchmove mousemove", function(d) { 
@@ -246,14 +262,14 @@ const callout14 = (g, value) => {
             `translate(${d3.mouse(this)[0]},${d3.mouse(this)[1]})`
         );
         d3.select(this)
-            .attr("stroke", "black")
+            .classed("map-hovered-border", true)
             .raise();
         })
         .on("touchend mouseleave", function() {
         tooltip.call(callout14, null);
         d3.select(this)
-            .attr("stroke", null)
-            .lower();
+        .classed("map-hovered-border", false)
+        .lower();
         });
   
     }
