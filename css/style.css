@@ -55,6 +55,37 @@ p {
   font-size: 0.9em;
 }
 
+#toolTip {
+  background-color: #fff;
+  position: fixed;
+  border: solid 1px #ccc;
+  padding: 10px 20px;
+}
+
+#toolTip * {
+  margin: 0px;
+}
+
+#toolTip .bookCount {
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+#toolTip .instruction {
+  font-size: 1.2em;
+}
+
+datalist {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gridlines {
+  stroke: #CFCFCF;
+  opacity: 0.1
+}
+
 #words * {
   cursor: pointer;
 }

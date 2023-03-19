@@ -35,7 +35,7 @@
     <script src="js/wordCloudData.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div id="mainContainer" class="container">
       <h1>Analyzing the Recent Increase in Book Bans in Schools</h1>
       <h4>Caitlin, Deepak, & Jiwon</h4>
       <p>
@@ -63,6 +63,37 @@
             <svg id="districtbargraph"></svg>
          </div>
        </div>
+      </div>
+
+      <div id="banTimeline">
+        <h4>Timeline of Book Bans by State (July 2021 - June 2022)</h4>
+        <div style="display: none; left: 100px" id="toolTip">
+          <p class="bookCount"><span id="stateText"></span></p>
+          <p class="instruction"><span id="numBansText"></span> Titles Banned <span id="numBansTextDate"></span></p>
+        </div>
+        <div class="slidecontainer" width="100%">
+          <button onclick="playPauseSlider()"><span id="buttonText">Play</span></button>
+          <select name="barGraphType" id="barGraphType" onchange="updateGraphType(this.value)">
+            <option value="cumulative" selected>Cumulative</option>
+            <option value="non-cumulative">Non-Cumulative</option>
+          </select>
+          <datalist id="tickmarks">
+            <option value="0" label="Jul 21"></option>
+            <option value="1" label="Aug 21"></option>
+            <option value="2" label="Sep 21"></option>
+            <option value="3" label="Oct 21"></option>
+            <option value="4" label="Nov 21"></option>
+            <option value="5" label="Dev 21"></option>
+            <option value="6" label="Jan 22"></option>
+            <option value="7" label="Feb 22"></option>
+            <option value="8" label="Mar 22"></option>
+            <option value="9" label="Apr 22"></option>
+            <option value="10" label="May 22"></option>
+            <option value="11" label="Jun 22"></option>
+          </datalist>
+          <input id="monthYear" style="width: 100%" type="range" min="0" max="11" value="0" class="slider" id="monthSlider" onchange="updateSlider(this.value)" list="tickmarks">
+        </div>
+        <svg id="categories" width="100%" height="800"></svg>
       </div>
 
       <div class="section wordCloudChart">
@@ -122,6 +153,7 @@
       </div>
 
     </div>
+    <script src="data/data.js"></script>
     <script src="js/caitlin.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
