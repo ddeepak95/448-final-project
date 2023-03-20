@@ -15,12 +15,10 @@
 .map-highlighted-border {
   stroke: black;
   stroke-width: 3px !important;
-
 }
 .map-hovered-border {
   stroke: black;
   stroke-width: 1px;
-
 }
 .section {
   margin: 150px 0px;
@@ -82,8 +80,8 @@ datalist {
 }
 
 .gridlines {
-  stroke: #CFCFCF;
-  opacity: 0.1
+  stroke: #cfcfcf;
+  opacity: 0.1;
 }
 
 #words * {
@@ -183,4 +181,130 @@ datalist {
 .booksListTitle {
   text-align: center;
   margin-bottom: 0px;
+}
+
+#bookSearchList ul {
+  list-style-type: none;
+}
+
+.accordion-container {
+  height: 600px;
+  overflow-y: scroll;
+}
+
+/* width */
+.accordion-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.accordion-container::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey; */
+  background-color: #f3f3f34b;
+  border-radius: 2px;
+}
+
+/* Handle */
+.accordion-container::-webkit-scrollbar-thumb {
+  background: rgb(153, 153, 153);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.accordion-container::-webkit-scrollbar-thumb:hover {
+  background: #575757;
+}
+
+.ac-header {
+  cursor: pointer;
+  background-color: #f3f3f3;
+  padding: 10px 0px 10px 20px;
+  border-radius: 4px;
+}
+
+.ac-trigger .line1 * {
+  display: inline-block;
+}
+
+.ac-trigger .line2 p {
+  margin-bottom: 0px;
+}
+
+.ac-trigger .bookName {
+  width: 60%;
+  font-size: 1.5em;
+  margin-bottom: 0px;
+}
+
+.ac-trigger .countSection {
+  float: right;
+  position: relative;
+  right: 20px;
+  top: 2px;
+}
+
+.countSection .countText {
+  letter-spacing: -5px;
+  margin-right: 8px;
+  color: #ff3333;
+}
+
+.ac-panel {
+  display: none;
+  padding: 0px 8px;
+  margin-bottom: 50px;
+}
+
+.ac-panel p {
+  margin-bottom: 0px;
+  font-size: 1em;
+}
+.districtSpans {
+  display: flex;
+  flex-wrap: wrap;
+}
+.districtSpans span {
+  font-size: 0.8em;
+  margin: 5px;
+  padding: 0px 20px;
+  border-radius: 20px;
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.stateContainer {
+  margin-bottom: 15px;
+}
+
+.stateContainer * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.stateNameDiv {
+  width: 20%;
+}
+
+.districtSpanDiv {
+  width: 80%;
+}
+
+.ac-panel .bannedIn {
+  text-align: center;
+  margin: 20px auto;
+  width: fit-content;
+  padding: 6px 20px;
+  border-radius: 100px;
+  background-color: #e7e7e7;
+  font-weight: 900;
+  font-size: 1em;
+}
+
+#bookSearchList .search {
+  text-align: center;
+  padding: 20px;
+  font-size: 2em;
+  height: 60px;
+  width: 60%;
+  margin: 0px auto 20px;
+  display: block;
 }

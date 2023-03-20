@@ -37,8 +37,6 @@ function wordCloud(selector) {
         return d.text;
       })
       .on("mouseover", function (event, d) {
-        console.log(d);
-        console.log(event.books);
         updateHoverSection(event.books.length);
       })
       .on("mouseleave", function (event, d) {
@@ -185,15 +183,10 @@ function loadAllBooks() {
 }
 
 function bookListHoverEvent(event) {
-  console.log(event.srcElement.style.backgroundColor);
   const template = document.getElementById("bookListHoverBox");
   const bookId = event.srcElement.dataset.bookid;
 
-  console.log(bookId);
-  console.log(allBookDetails[bookId]);
-
   let statesCount = findItemCountArray(allBookDetails[bookId].states);
-  console.log(statesCount);
   statesCount.sort(function (a, b) {
     return a[1] - b[1];
   });
@@ -273,6 +266,118 @@ function wordCloudInit() {
   );
   updateWordColors();
   updateGirlWordColor();
+  searchList();
+}
+
+function searchList() {
+  var bookDetailsSearchArray = Object.values(allBookDetails);
+  bookDetailsSearchArray.sort(function (a, b) {
+    return a.count - b.count;
+  });
+  bookDetailsSearchArray.reverse();
+  bookDetailsSearchArray.forEach((element) => addCountSymbol(element));
+  function addCountSymbol(element) {
+    let bars = "▮";
+    let i = 1;
+    while (i < element.count) {
+      bars += "▮";
+      i++;
+    }
+    element.countText = bars;
+
+    let j = 0;
+    let districtSpans =
+      '<p class="bannedIn">Banned in ' + element.count + " districts</p>";
+    let numberOfStates = element.states.length;
+    let tempStatesContainer = {};
+    while (j < numberOfStates) {
+      if (tempStatesContainer.hasOwnProperty(element.states[j])) {
+        tempStatesContainer[element.states[j]].push(element.districts[j]);
+      } else {
+        tempStatesContainer[element.states[j]] = [];
+        tempStatesContainer[element.states[j]].push(element.districts[j]);
+      }
+      j++;
+    }
+    let states = Object.keys(tempStatesContainer);
+    let newStates = [];
+    for (var k = 0; k < states.length; k++) {
+      let districts = tempStatesContainer[states[k]];
+      newStates.push([states[k], districts.length]);
+    }
+    console.log(newStates);
+    newStates.sort(function (a, b) {
+      return a[1] - b[1];
+    });
+    newStates.reverse();
+    for (var k = 0; k < newStates.length; k++) {
+      let districts = tempStatesContainer[newStates[k][0]];
+      districtSpans +=
+        '<div class="stateContainer"><div class="stateNameDiv"><p class="stateName">' +
+        newStates[k][0] +
+        "(" +
+        newStates[k][1] +
+        ")" +
+        "</p></div>";
+      let districtContainer =
+        '<div class="districtSpanDiv"><div class="districtSpans">';
+      for (var l = 0; l < districts.length; l++) {
+        districtContainer += "<span>" + districts[l] + "</span>";
+      }
+      districtContainer += "</div></div>";
+      districtSpans += districtContainer;
+      districtSpans += "</div>";
+    }
+
+    element.places = districtSpans;
+  }
+  var options = {
+    valueNames: ["bookName", "author", "countText", "count", "places"],
+    item: '<li class="ac"><div class="ac-header"><div class="ac-trigger"><div class = "line1"><h4 class="bookName"></h4><span id="countSection" class="countSection"><span class="countText"></span><span class="count"></span><span class="bannedSymbol">🚫</span></span></div><div class="line2"><p class="author"></p></div></div></div><div class="ac-panel"><div class="places"></div></div></li>',
+  };
+
+  var bookSearchList = new List(
+    "bookSearchList",
+    options,
+    bookDetailsSearchArray
+  );
+  accordion();
+}
+
+// function removePaginationClick() {
+//   var acc = document.getElementsByClassName("page");
+//   var i;
+//   console.log(acc);
+//   for (i = 0; i < acc.length; i++) {
+//     acc[i].href = "";
+//     acc[i].addEventListener("click", function (event) {
+//       console.log("clicked");
+//       event.preventDefault();
+//       setTimeout(accordion, 10);
+//       setTimeout(removePaginationClick, 10);
+//     });
+//   }
+// }
+
+function accordion() {
+  var acc = document.getElementsByClassName("ac-header");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      /* Toggle between adding and removing the "active" class,
+      to highlight the button that controls the panel */
+      this.classList.toggle("active");
+
+      /* Toggle between hiding and showing the active panel */
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
 }
 
 setTimeout(wordCloudInit, 50);

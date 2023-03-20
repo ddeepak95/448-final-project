@@ -32,6 +32,7 @@
     />
     <script src="https://unpkg.com/topojson@3"></script>
     <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
     <script src="js/wordCloudData.js"></script>
   </head>
   <body>
@@ -137,6 +138,17 @@
           <p class="booksListTitle">Titles with word <b><span id="bookListTitleWord"></span></b></p>
           <div id="booksList"></div>
           <div id="booksListContainerBtn" style="display: none;"></div></div>
+        </div>
+        <div id="bookSearchContainer">
+          <h4>Search and Explore</h4>
+          <p>
+            List of all the banned books. See if you can find any of your favourite books!
+          </p>
+          <div id="bookSearchList">
+            <input type="text" class="search" placeholder="Search Book, Author"/>
+            <ul class="list accordion-container"></ul>
+            <ul class="pagination"></ul>
+          </div>
         </div>
         <div class="section references">
           <h4>References</h4>
