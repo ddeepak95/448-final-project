@@ -40,34 +40,28 @@
       <h1>Analyzing the Recent Increase in Book Bans in Schools</h1>
       <h4>Caitlin, Deepak, & Jiwon</h4>
       <p>
-        The last several months have seen a rapid, unprecedented increase in the
-        ban of books across the United States. This recent banning has been
+        The last several months have seen a rapid, unprecedented increase in
+        the ban of books across the United States. This recent banning has been
         known to target and censor books by or about people of underrepresented
         communities such as the LGBTQ+ community and people of color, but there
         have not been many extensive visualizations that shed light on the
-        significant impact of book bans in more detail. More information
-        regarding this issue can be found here.
+        significant impact of book bans in more detail. In order to contribute
+        further insight on this issue, we analyzed and visualized PEN America's
+        dataset that covers all instances of book bans during this recent
+        increase in bans from July 1, 2021 through June 30, 2022.
       </p>
 
-
-      <div class="section bookBansMap">
-        <h4>Where do book bans in the US occur the most?</h4>
-        <p>
-          Here, we examine how banning instances differ between different states in the U.S. Hover over a state to view its total ban count and the 
-          number of districts banning at least one book. Click on a state to view its distribution of bans across different districts. 
-        </p>
-        <div class="flex-container">
-          <svg id="map"></svg>
-          <div>
-            <!-- <p id="statename" class="header"></p> -->
-            <!-- <div id="district-table" class="scroll-table"></div> -->
-            <svg id="districtbargraph"></svg>
-         </div>
-       </div>
-      </div>
-
-      <div id="banTimeline">
+      <div class="section" id="banTimeline">
         <h4>Timeline of Book Bans by State (July 2021 - June 2022)</h4>
+        <p>
+          First, let's start with an overview of what the recent spur in bans have looked like from month to month.
+          The visualization below is an interactive timeline of the past several months that show the top 10 states
+          with the highest number of bans. You can click the “Play” button to animate the changes from month to
+          month, or you can click on any of the months on the slider manually. You can also switch between the bar
+          graph from showing the number of bans occurring in each individual month (i.e. non-cumulative) or the
+          cumulative number of bans from July 2021. Play around with the visualization to see if there are any
+          particularly interesting findings.
+        </p>
         <div style="display: none; left: 100px" id="toolTip">
           <p class="bookCount"><span id="stateText"></span></p>
           <p class="instruction"><span id="numBansText"></span> Titles Banned <span id="numBansTextDate"></span></p>
@@ -84,7 +78,7 @@
             <option value="2" label="Sep 21"></option>
             <option value="3" label="Oct 21"></option>
             <option value="4" label="Nov 21"></option>
-            <option value="5" label="Dev 21"></option>
+            <option value="5" label="Dec 21"></option>
             <option value="6" label="Jan 22"></option>
             <option value="7" label="Feb 22"></option>
             <option value="8" label="Mar 22"></option>
@@ -95,6 +89,51 @@
           <input id="monthYear" style="width: 100%" type="range" min="0" max="11" value="0" class="slider" id="monthSlider" onchange="updateSlider(this.value)" list="tickmarks">
         </div>
         <svg id="categories" width="100%" height="800"></svg>
+        <p>
+          A couple of spikes in certain states that stand out — in August of 2021,
+          there was a big spike in the number of books banned in Pennsylvania.
+          This spike made news, which revealed that this book ban targeted black
+          and Latinx authors specifically. Another huge spike followed in December
+          of 2021 in Texas, where school districts began a massive banning on
+          books related to race and sexuality. In February of 2022, Tennessee then
+          follows suit in the nation-wide spur with a large spike of its own,
+          banning “obscene” books on race and gender. Florida, another leading
+          state in the book bans, seems to have relatively consistent and frequent
+          jumps in bans from month to month starting from November 2021. Notably,
+          these big spikes have occurred in mostly right-leaning states. More
+          information and news regarding these specific spikes in bans can be
+          found below:
+        </p>
+        <ul>
+          <li style="font-size: 1.2em;line-height: 2em;">August 2021 — <a href="https://www.yorkdispatch.com/story/news/education/2021/09/01/afraid-teach-schools-book-ban-targeted-black-latino-authors/5601980001/" target="_blank" rel="noopener noreferrer">
+            Pennsylvania</a> targets Black and Latinx authors by banning their books.
+          <li style="font-size: 1.2em;line-height: 2em;">December 2021 — <a href="https://www.nbcnews.com/news/us-news/texas-books-race-sexuality-schools-rcna13886" target="_blank" rel="noopener noreferrer">
+            Texas</a> begins a massive banning on books related to race and sexuality.
+          <li style="font-size: 1.2em;line-height: 2em;">February 2022 — <a href="https://tn.chalkbeat.org/2022/1/28/22907090/school-library-book-ban-tennessee-legislation" target="_blank" rel="noopener noreferrer">
+            Tennessee</a> follows in the nation-wide spur by banning “obscene” books on race and gender.
+          <li style="font-size: 1.2em;line-height: 2em;">A look back on the book bans from the 2021-2022 school year in <a href="https://www.abcactionnews.com/news/state/2022-in-the-classroom-a-look-back-on-book-bans-culture-wars-and-the-fight-over-parental-rights" target="_blank" rel="noopener noreferrer">
+            Florida</a>.
+        </ul>
+        <p>
+          This leads to the question of, where specifically in these states are we seeing these spikes?
+          Are there particularly school districts within these states that are dominating the bans?
+        </p>
+      </div>
+
+      <div class="section bookBansMap">
+        <h4>Where do book bans in the US occur the most?</h4>
+        <p>
+          Here, we examine how banning instances differ between different states in the U.S. Hover over a state to view its total ban count and the
+          number of districts banning at least one book. Click on a state to view its distribution of bans across different districts.
+        </p>
+        <div class="flex-container">
+          <svg id="map"></svg>
+          <div>
+            <!-- <p id="statename" class="header"></p> -->
+            <!-- <div id="district-table" class="scroll-table"></div> -->
+            <svg id="districtbargraph"></svg>
+         </div>
+       </div>
       </div>
 
       <div class="section wordCloudChart">

@@ -1,7 +1,7 @@
 // Constants
 const svgHeight = "800";
 const svgWidth = document.getElementById("mainContainer").offsetWidth;
-const margin = {top: 20, right: 20, bottom: 60, left: 120};
+const margin = {top: 20, right: 120, bottom: 60, left: 120};
 const sliderValueToMonthYear = [
   "July 2021",
   "August 2021",
