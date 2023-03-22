@@ -305,7 +305,6 @@ function searchList() {
       let districts = tempStatesContainer[states[k]];
       newStates.push([states[k], districts.length]);
     }
-    console.log(newStates);
     newStates.sort(function (a, b) {
       return a[1] - b[1];
     });

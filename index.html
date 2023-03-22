@@ -17,6 +17,8 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&display=swap"
       rel="stylesheet"
@@ -24,6 +26,7 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/skeleton.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="js/aos/aos.css" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <link
@@ -34,12 +37,20 @@
     <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
     <script src="js/wordCloudData.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+    <script src="js/aos/aos.js"></script>
   </head>
   <body>
+    <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000">
+      <div class="header-container container">
+      <h1>Book B<span class="title-strike">ur</span>n<span class="title-sub">a</span></h1>
+      <h5><i>Caitlin, Deepak, & Jiwon</i></h5>
+      </div>
+       <div class="header-image"></div>
+      </div>
     <div id="mainContainer" class="container">
-      <h1>Analyzing the Recent Increase in Book Bans in Schools</h1>
-      <h4>Caitlin, Deepak, & Jiwon</h4>
-      <p>
+      <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000" >
+      <p class="centered-text">
         The last several months have seen a rapid, unprecedented increase in
         the ban of books across the United States. This recent banning has been
         known to target and censor books by or about people of underrepresented
@@ -50,8 +61,9 @@
         dataset that covers all instances of book bans during this recent
         increase in bans from July 1, 2021 through June 30, 2022.
       </p>
-
-      <div class="section" id="banTimeline">
+      <img class="book-storm" src="/images/book-storm.gif" />
+    </div>
+      <div data-aos="fade-up" data-aos-duration="3000" class="section" id="banTimeline">
         <h4>Timeline of Book Bans by State (July 2021 - June 2022)</h4>
         <p>
           First, let's start with an overview of what the recent spur in bans have looked like from month to month.
@@ -66,7 +78,7 @@
           <p class="bookCount"><span id="stateText"></span></p>
           <p class="instruction"><span id="numBansText"></span> Titles Banned <span id="numBansTextDate"></span></p>
         </div>
-        <div class="slidecontainer" width="100%">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000" class="slidecontainer" width="100%">
           <button onclick="playPauseSlider()"><span id="buttonText">Play</span></button>
           <select name="barGraphType" id="barGraphType" onchange="updateGraphType(this.value)">
             <option value="cumulative" selected>Cumulative</option>
@@ -88,7 +100,7 @@
           </datalist>
           <input id="monthYear" style="width: 100%" type="range" min="0" max="11" value="0" class="slider" id="monthSlider" onchange="updateSlider(this.value)" list="tickmarks">
         </div>
-        <svg id="categories" width="100%" height="800"></svg>
+        <svg data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000" id="categories" width="100%" height="800"></svg>
         <p>
           A couple of spikes in certain states that stand out — in August of 2021,
           there was a big spike in the number of books banned in Pennsylvania.
@@ -120,7 +132,7 @@
         </p>
       </div>
 
-      <div class="section bookBansMap">
+      <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section bookBansMap">
         <h4>Where do book bans in the US occur the most?</h4>
         <p>
           Here, we examine how banning instances differ between different states in the U.S. Hover over a state to view its total ban count and the
@@ -136,7 +148,7 @@
        </div>
       </div>
 
-      <div class="section wordCloudChart">
+      <div data-aos="fade-right" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000" class="section wordCloudChart">
         <h4>What kinds of books are being targeted?</h4>
         <p>
           To get an initial sense of what kinds of books are being banned, let's take a look at their
@@ -161,7 +173,7 @@
           districts in which that book is banned. Play around with this visualization to explore how the
           words in this cloud are connected to certain book titles and/or districts.
         </p>
-        <div id="titleWordCloud">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-duration="2000" id="titleWordCloud">
           <div style="display: none; left: 100px" id="hoverBox">
             <p class="bookCount"><span id="onHoverText">Hover</span> Book Titles</p>
             <p class="instruction">Click to view the book titles below!</p>
@@ -196,54 +208,82 @@
         <div id="booksListContainer">
           <p class="booksListTitle">Titles with word <b><span id="bookListTitleWord"></span></b></p>
           <div id="booksList"></div>
-          <div id="booksListContainerBtn" style="display: none;"></div></div>
+          <div id="booksListContainerBtn" style="display: none;"></div>
         </div>
-        <div id="bookSearchContainer">
-          <p>
-            There is a lot to be revealed here. This word cloud makes very clear what kinds of
-            books are being targeted by these bans. With the words “girl” and “boy” being the
-            two most prominent, it seems as though school districts care most about making sure
-            their kids conform to outdated gender norms and are not exposed to ideas of
-            queerness or sexual orientation. This is further compounded by the words “sex”,
-            “gender”, “identity”, and even “guide” being among the most common words — when you
-            click on the word “guide” to show the titles with the word in it, it shows that
-            many of the books are guides for navigating things like sexual identity and
-            orientation, queerness, and more.
-          </p>
-          <p>
-            Another important observation is that among the most common words are “white” and
-            “black”. It is made quite clear these school districts care more about white authors and
-            protecting their image of whiteness than supporting black authors. The titles of the banned
-            books with the word “white” hint toward their books being about criticism of whiteness and
-            racial divide, while the titles of the books with “black” are related to the black
-            American experience and uplifting the marginalized voices of the community. It is certainly
-            no longer a coincidence that the states that are leading the charge in these book bannings are
-            and have been known to be very much right-leaning.
-          </p>
-          <h4>Search and Explore</h4>
-          <p>
-            Is there a book or author that you'd like to see whether it is banned or not? Search below!
-          </p>
-          <div id="bookSearchList">
-            <input type="text" class="search" placeholder="Search Book, Author"/>
-            <ul class="list accordion-container"></ul>
-            <ul class="pagination"></ul>
-          </div>
+        <p>
+          There is a lot to be revealed here. This word cloud makes very clear what kinds of
+          books are being targeted by these bans. With the words “girl” and “boy” being the
+          two most prominent, it seems as though school districts care most about making sure
+          their kids conform to outdated gender norms and are not exposed to ideas of
+          queerness or sexual orientation. This is further compounded by the words “sex”,
+          “gender”, “identity”, and even “guide” being among the most common words — when you
+          click on the word “guide” to show the titles with the word in it, it shows that
+          many of the books are guides for navigating things like sexual identity and
+          orientation, queerness, and more.
+        </p>
+        <p>
+          Another important observation is that among the most common words are “white” and
+          “black”. It is made quite clear these school districts care more about white authors and
+          protecting their image of whiteness than supporting black authors. The titles of the banned
+          books with the word “white” hint toward their books being about criticism of whiteness and
+          racial divide, while the titles of the books with “black” are related to the black
+          American experience and uplifting the marginalized voices of the community. It is certainly
+          no longer a coincidence that the states that are leading the charge in these book bannings are
+          and have been known to be very much right-leaning.
+        </p>
+
+      </div>
+      <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section" id="bookSearchContainer">
+
+        <h4>Search and Explore</h4>
+        <p>
+          Is there a book or author that you'd like to see whether it is banned or not? Search below!
+        </p>
+        <div id="bookSearchList">
+          <input type="text" class="search" placeholder="Search Book Title, Author"/>
+          <ul class="list accordion-container"></ul>
+          <ul class="pagination"></ul>
         </div>
-        <div class="section references">
-          <h4>References</h4>
-          <p>
+      </div>
+      <div data-aos="fade-up" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000" class="section references">
+        <h4>References</h4>
+        <ul>
+          <li>Book Storm GIF: <a href="foreshortening.tumblr.com">foreshortening.tumblr.com</a></li>
+          <li>
             Data: <a href="https://pen.org/banned-in-the-usa/">https://pen.org/banned-in-the-usa/ </a> 
-          </p>
-          <p>
+          </li>
+          <li>
             Cloropleth Map: 
             <a href="https://observablehq.com/@robertmreedy/fivethirtyeight-2020-presidential-election-forecast">https://observablehq.com/@robertmreedy/fivethirtyeight-2020-presidential-election-forecast</a> 
-          </p>
-
+          </li>
+          <li>
+            Cover Photo: 
+            <a href="https://www.pexels.com/photo/assorted-title-novel-book-photo-775998/">https://www.pexels.com/photo/assorted-title-novel-book-photo-775998/</a> 
+          </li>
+          <li>
+            D3 Word Cloud: 
+            <a href="https://github.com/jasondavies/d3-cloud">https://github.com/jasondavies/d3-cloud</a> 
+          </li>
+          <li>
+            Search: 
+            <a href="https://listjs.com/">https://listjs.com/</a> 
+          </li>
+          <li>
+            Sharing: 
+            <a href="https://ellisonleao.github.io/sharer.js/">https://ellisonleao.github.io/sharer.js/</a> 
+          </li>
+        </ul>
+      </div>
+      </div>
+      </div>
+      <div class="footer-section">
+        <div class="share-container">
+          <h5><i>Spread the word!</i></h5>
+          <button class="button" data-sharer="twitter" data-title="Check out this awesome work!" data-hashtags="dataViz,bookBans" data-url="https://ellisonleao.github.io/sharer.js/">Twitter</button>
+          <button class="button" data-sharer="whatsapp" data-title="Check out this awesome work!" data-url="https://ellisonleao.github.io/sharer.js/">Whatsapp</button>
+          <button class="button" data-sharer="reddit" data-url="https://ellisonleao.github.io/sharer.js/">Reddit</button>
         </div>
-      </div>
-      </div>
-
+    <p><i>Made For <a href="https://cs448b.subramonyam.com/">CS448B</a></i></p></div>
     </div>
     <script src="data/data.js"></script>
     <script src="js/caitlin.js"></script>
