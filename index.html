@@ -137,22 +137,42 @@
           Are there particularly school districts within these states that are dominating the bans?
         </p>
       </div>
-
+      <div class="section" id="districtMap">
       <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section bookBansMap">
         <h4>Where do book bans in the US occur the most?</h4>
         <p>
-          Here, we examine how banning instances differ between different states in the U.S. Hover over a state to view its total ban count and the
-          number of districts banning at least one book. Click on a state to view its distribution of bans across different districts.
+          We'll now examine the geographic distribution of total bans passed from July 2021 to June 2022. To gain more insight into how these 
+          banning instances are distributed within a state, we'll also explore the exact districts that instigated these bans and determine if there 
+          are certain districts that are overrepresented in the dataset. The visualization below is an interactive 
+          chloropleth map of the U.S. with gray mapping to zero bans and dark red mapping to the highest number of bans. You can 
+          hover over a state to see its total number of bans passed and its number of unique districts that initiated a ban. If you click 
+          on a state, you can see a bar chart mapping the name of each banning district to the number of bans passed by that district. 
+       
         </p>
+        <div style="display: none; left: 100px" id="toolTip">
+          <p class="banCount"><span id="banText"></span></p>
+          <p class="info"><span id="numDistrictsText"></span> Titles Banned <span id="numBansTextDate"></span></p>
+        </div>
+
         <div class="flex-container">
           <svg id="map"></svg>
           <div>
-            <!-- <p id="statename" class="header"></p> -->
-            <!-- <div id="district-table" class="scroll-table"></div> -->
             <svg id="districtbargraph"></svg>
          </div>
        </div>
+       <p>
+        As expected from our findings in the book ban timeline, we notice that Texas (801) and Florida (566) are the top two contenders for the highest overall number of bans passed, with
+        Pennsylvania (458) and Tennessee (349) following close behind. As a whole, states in the midwest and along the eastern and southern coasts show 
+        higher rates of banning than their western counterparts. We observe that the strongest hotspots of banning tend to occur in historically Republican states but that for states
+        with no bans at all, there is little correlation to political party status quo (roughly equal numbers of red and blue states). 
+        Diving a little deeper, we notice that for each of the top 4 states, the total ban counts can be disproportionately assigned to just one or
+        two districts in the state: Texas- North East Independent School District, Florida- Duval County Public Schools and 
+        Indian River County School District, Tennessee- Collierville Schools, Pennsylvania- Central York School District. What information
+        can we find about each of these districts?
+
+      </p>
       </div>
+    </div> 
 
       <div class="section wordCloudChart">
         <h4 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">What kinds of books are being targeted?</h4>

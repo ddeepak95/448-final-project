@@ -180,6 +180,34 @@ function tabulate(data, columns) {
   return table;
 }
 
+  // Tool tip listener
+  var banTimelineContainer = document.getElementById("districtMap");
+  banTimelineContainer.addEventListener("mousemove", function (e) {
+    var hoverBox = document.getElementById("toolTip");
+    hoverBox.style.left = `${e.clientX + 8}px`;
+    hoverBox.style.top = `${e.clientY + 8}px`;
+  });
+
+
+// Tool tip functions
+
+function updateToolTip(numBans, numDistricts) {
+    var hoverBox = document.getElementById("toolTip");
+    hoverBox.style.display = "block";
+  
+    var banText = document.getElementById("banText");
+    banText.innerHTML = "Total Bans:" + numBans;
+  
+    var numDistrictsText = document.getElementById("numDistrictsText");
+    numDistrictsText.innerHTML = "# Banning Districts:" + numDistricts;
+  
+  }
+  
+  function hideToolTip() {
+    var hoverBox = document.getElementById("toolTip");
+    hoverBox.style.display = "none";
+  }
+  
 
 // callout and map code blocks modified from https://observablehq.com/@robertmreedy/fivethirtyeight-2020-presidential-election-forecast
 const callout14 = (g, value) => {
@@ -259,6 +287,29 @@ const callout14 = (g, value) => {
             .classed("map-highlighted-border", true)
             .raise();
         })
+
+
+        // .on("mouseover", function (event, d) {
+        //     updateToolTip(num_bans_per_state.get(d.properties.name), 
+        //     num_banning_districts.get(d.properties.name));
+
+        //     tooltip.attr(
+        //         "transform",
+        //         `translate(${d3.mouse(this)[0]},${d3.mouse(this)[1]})`
+        //     )
+        //       d3.select(this)
+        //         .classed("map-hovered-border", true)
+        //         .raise();
+        //     })
+    
+        //   .on("mouseleave", function (event, d) {
+        //     hideToolTip()
+        //     d3.select(this)
+        //     .classed("map-hovered-border", false)
+        //     .lower();
+        //   });
+          
+
         .on("touchmove mousemove", function(d) { 
         tooltip.call(
             callout14, 
