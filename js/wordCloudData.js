@@ -73,7 +73,7 @@ const wordCloudData = [
   },
   {
     text: "girl",
-    size: 27,
+    size: 32,
     books: [
       ["B0029", "Girls Like Us (2019)"],
       ["B0046", "Me and Earl and the Dying Girl"],
@@ -343,7 +343,7 @@ const wordCloudData = [
   },
   {
     text: "guide",
-    size: 11,
+    size: 9,
     books: [
       ["B0054", "LGBTQ Families: The Ultimate Teen Guide"],
       ["B0074", "Sex, Puberty, and All That Stuff: A Guide to Growing Up"],
@@ -410,7 +410,7 @@ const wordCloudData = [
   },
   {
     text: "black",
-    size: 10,
+    size: 12,
     books: [
       ["B0067", "The Black Flamingo"],
       ["B0138", "Changing the Equation: 50+ US Black Women in STEM"],
@@ -604,7 +604,7 @@ const wordCloudData = [
   },
   {
     text: "sex",
-    size: 9,
+    size: 12,
     books: [
       [
         "B0005",
@@ -881,7 +881,7 @@ const wordCloudData = [
   },
   {
     text: "gender",
-    size: 6,
+    size: 11,
     books: [
       [
         "B0045",
