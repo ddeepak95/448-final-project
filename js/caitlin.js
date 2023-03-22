@@ -289,27 +289,6 @@ const callout14 = (g, value) => {
         })
 
 
-        // .on("mouseover", function (event, d) {
-        //     updateToolTip(num_bans_per_state.get(d.properties.name), 
-        //     num_banning_districts.get(d.properties.name));
-
-        //     tooltip.attr(
-        //         "transform",
-        //         `translate(${d3.mouse(this)[0]},${d3.mouse(this)[1]})`
-        //     )
-        //       d3.select(this)
-        //         .classed("map-hovered-border", true)
-        //         .raise();
-        //     })
-    
-        //   .on("mouseleave", function (event, d) {
-        //     hideToolTip()
-        //     d3.select(this)
-        //     .classed("map-hovered-border", false)
-        //     .lower();
-        //   });
-          
-
         .on("touchmove mousemove", function(d) { 
         tooltip.call(
             callout14, 
