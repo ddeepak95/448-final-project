@@ -69,7 +69,7 @@
       </p>
       <img class="book-storm" src="/images/book-storm.gif" />
     </div>
-      <div data-aos="fade-up" data-aos-duration="3000" class="section" id="banTimeline">
+      <div class="section" id="banTimeline">
         <h4>Timeline of Book Bans by State (July 2021 - June 2022)</h4>
         <p>
           First, let's start with an overview of what the recent spur in bans have looked like from month to month.
@@ -84,7 +84,7 @@
           <p class="bookCount"><span id="stateText"></span></p>
           <p class="instruction"><span id="numBansText"></span> Titles Banned <span id="numBansTextDate"></span></p>
         </div>
-        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000" class="slidecontainer" width="100%">
+        <div class="slidecontainer" width="100%">
           <button onclick="playPauseSlider()"><span id="buttonText">Play</span></button>
           <select name="barGraphType" id="barGraphType" onchange="updateGraphType(this.value)">
             <option value="cumulative" selected>Cumulative</option>
@@ -154,13 +154,13 @@
        </div>
       </div>
 
-      <div data-aos="fade-right" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000" class="section wordCloudChart">
-        <h4>What kinds of books are being targeted?</h4>
-        <p>
+      <div class="section wordCloudChart">
+        <h4 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">What kinds of books are being targeted?</h4>
+        <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">
           To get an initial sense of what kinds of books are being banned, let's take a look at their
           titles. Below are the titles of the top ten most banned books.
         </p>
-        <h5>Top Ten Most Banned Books</h5>
+        <h5 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">Top Ten Most Banned Books</h5>
         <div id="topTenBarChart"> (bar graph here) </div>
         <p>
           This simple overview already conveys a lot about what kinds of books are being targeted.
@@ -179,7 +179,7 @@
           districts in which that book is banned. Play around with this visualization to explore how the
           words in this cloud are connected to certain book titles and/or districts.
         </p>
-        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-duration="2000" id="titleWordCloud">
+        <div id="titleWordCloud">
           <div style="display: none; left: 100px" id="hoverBox">
             <p class="bookCount"><span id="onHoverText">Hover</span> Book Titles</p>
             <p class="instruction">Click to view the book titles below!</p>
