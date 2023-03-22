@@ -107,7 +107,7 @@
           <input id="monthYear" style="width: 100%" type="range" min="0" max="11" value="0" class="slider" id="monthSlider" onchange="updateSlider(this.value)" list="tickmarks">
         </div>
         <svg data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-duration="1000" id="categories" width="100%" height="800"></svg>
-        <p>
+        <p style="margin-top: 50px;">
           A couple of spikes in certain states that stand out — in August of 2021,
           there was a big spike in the number of books banned in Pennsylvania.
           This spike made news, which revealed that this book ban targeted black
@@ -133,16 +133,16 @@
             Florida</a>.
         </ul>
         <p>
-          This leads to the question of, where specifically in these states are we seeing these spikes?
-          Are there particularly school districts within these states that are dominating the bans?
+          This leads to the question of, where specifically within these states are we seeing these spikes?
+          Are there particular school districts within these states that are dominating the bans?
         </p>
       </div>
       <div class="section" id="districtMap">
-      <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section bookBansMap">
+      <!-- <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section bookBansMap"> -->
         <h4>Where do book bans in the US occur the most?</h4>
         <p>
-          We'll now examine the geographic distribution of total bans initiated from July 2021 to June 2022. To gain more insight into how these 
-          banning instances are distributed within a state, we'll also explore the exact districts that instigated these bans and determine if there 
+          We'll now examine the geographic distribution of total bans initiated from this time period. To gain more insight into how these 
+          banning instances are distributed within a state, we'll explore the exact districts that instigated these bans and determine if there 
           are certain districts that are overrepresented in the dataset. The visualization below is an interactive 
           chloropleth map of the U.S. with gray mapping to zero bans and dark red mapping to the highest number of bans. You can 
           hover over a state to see its total number of bans initiated and its number of unique districts that initiated a ban. If you click 
@@ -160,30 +160,23 @@
             <svg id="districtbargraph"></svg>
          </div>
        </div>
-       <p>
+       <p style="margin-top: 50px;">
         As expected from our findings in the book ban timeline, we notice that Texas (801) and Florida (566) are the top two contenders for the 
         highest overall number of bans passed, with Pennsylvania (458) and Tennessee (349) following close behind. As a whole, states in the midwest 
         and along the eastern and southern coasts show higher rates of banning than their western counterparts. 
         We observe that the strongest hotspots of banning tend to occur in historically Republican states but that for states with no bans at all, 
         there is little partisan correlation. Diving a little deeper, we notice that for each of the top 4 states, the total ban counts can be disproportionately
          assigned to just one or two districts in the state: Texas-North East Independent School District, Florida-Duval County Public Schools and 
-        Indian River County School District, Tennessee-Collierville Schools, Pennsylvania-Central York School District. Let's examine the top 
-        banning districts in Texas and Florida at a closer level:
+        Indian River County School District, Tennessee-Collierville Schools, Pennsylvania-Central York School District. Let's examine a few of the top
+        banning districts at a closer level:</p>
         <ul>
           <li style="font-size: 1.2em;line-height: 2em;">Texas - 
             North East Independent School District (NEISD) is the second-largest school district in San Antonio. 
             This San Antonio Report news <a href="https://www.nbcnews.com/news/us-news/texas-books-race-sexuality-schools-rcna13886" target="_blank" rel="noopener noreferrer">
             article</a> details how in late 2021, NEISD librarians began removing books deemed 
-            “obscene or vulgar” based on a list of 850 books circulated by state Rep. Matt Krause (R-Fort Worth), 
-            ultimately choosing to review 431 titles for appropriateness. NEISD has been heavily criticized by the <a href="https://www.sacurrent.com/news/san-antonios-north-east-isd-banned-more-books-than-any-other-texas-school-district-report-shows-29582596" target="_blank" rel="noopener noreferrer">
-            ACLU and its teacher's union</a> for its compliance with Krause's demands and in late August of 2022, students of the
-            district banded together to sign a <a href="https://www.change.org/p/north-east-independent-school-district-remove-the-krause-list-from-all-neisd-schools?redirect=false" target="_blank" rel="noopener noreferrer">
-            petition</a> decrying NEISD's restriction of their access to reading material on 
-            critical social and racial issues, safe sex resources, and LGBTQ relationships. 
-            Details of NEISD's decision to keep or remove particular titles from Krause's list can be found <a href="https://www.neisd.net/Page/34461" target="_blank" rel="noopener noreferrer">
-            here</a>
+            “obscene or vulgar”, choosing to review 431 titles for appropriateness.</li>
 
-          <li style="font-size: 1.2em;line-height: 2em;">FL - Duval County Public Schools— 
+          <!-- <li style="font-size: 1.2em;line-height: 2em;">Florida - Duval County Public Schools — 
             The signing of House Bill 1467 by  Governor Ron DeSantis in March, 2022, marked the requirement of library books to be 
             reviewed by <a href="https://www.newyorker.com/books/page-turner/what-are-we-protecting-children-from-by-banning-books" target="_blank" rel="noopener noreferrer">
               “certified media specialists”  </a>  for pornography themes and sources of potential “guilt, anguish, or other forms of 
@@ -193,40 +186,43 @@
             an individual is "inherently racist or oppressive, whether consciously or unconsciously." In a recent round of staff training, the district's 
             chief academic officer, Paula Renfro, informed teachers that they would have to   <a href="https://wusfnews.wusf.usf.edu/education/2023-01-29/duval-schools-tells-teachers-to-cover-or-store-books" target="_blank" rel="noopener noreferrer">
               “cover or store”  </a>any unapproved books.  </br>A full list of titles reviewed by the district can be found <a href="https://dcps.duvalschools.org/Page/33207" target="_blank" rel="noopener noreferrer">
-                here. </a> </br></br>These actions are not met without resistance from the local community: In early March of 2023, two organizations (MomsRising.org and JaxbyJax Literary Arts Festival)
-              are <a href="https://www.news4jax.com/news/local/2023/03/05/2-organizations-offer-children-books-banned-at-schools/" target="_blank" rel="noopener noreferrer">
-                partnering up </a> to provide Duval County students access to books that have already been banned.  Last month, Jacksonville bookstore 
-              <a href="https://www.firstcoastnews.com/article/news/education/jacksonville-bookstore-banned-book-display-duval-county/77-99525142-85d6-48a4-90f7-135b05cbb873" target="_blank" rel="noopener noreferrer">
-              Chamblin Bookmine </a> proudly put up a “Books Recently Banned in Duval County” display.
+                here. </a></li> -->
+          <li style="font-size: 1.2em;line-height: 2em;">
+            Florida - Duval County Public Schools began the process of reviewing 1.5 million titles
+            since <a href="https://www.newyorker.com/books/page-turner/what-are-we-protecting-children-from-by-banning-books" target="_blank" rel="noopener noreferrer"> 
+            the passing of a bill in March 2022</a> that required library books to be reviewed for
+            pornography themes and sources of potential “guilt, anguish, or other forms of psychological
+            distress” related to race or gender. There have been new state laws since then as well
+            that have similarly required districts to continue banning books of the same themes. The full list of
+            titles can be found <a href="https://dcps.duvalschools.org/Page/33207" target="_blank" rel="noopener noreferrer">here</a>.
 
-
+            </li>
         </ul>
-
-      </p>
-       <p>
-         We observe a heavy underlying theme in the onset of these top districts' overwhelming banning track record: strong demands
-         by state representatives to remove books that explore topics including race, sexual identity, civil rights, resulting in further isolation 
-         of students from historically marginalized backgrounds, with stories that perhaps once gave them a feeling of belonging, now disappearing from shelves. 
-         However, we also find that for every story criticizing the decisions made by district leadership, there are uplifting stories of local communities and 
-         organizations coming together to fight back against the injustice.
+        <p>
+          The observations from this visualization and the context behind them give us a better sense of the motivation of the dominating
+          states and districts for the recent banning of books en masse. But do the books that are being banned actually fit the criteria
+          of being harmful or causing "guilt, anguish, or distress", as dictated by these states and districts? Let's take a closer look into exactly what kinds of books 
+          are actually being banned.
         </p>
-      </div>
+
+      <!-- </div> -->
     </div> 
 
       <div class="section wordCloudChart">
         <h4 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">What kinds of books are being targeted?</h4>
         <p data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">
-          We've already gotten some sense of the broad reoccurring themes among banned books, but we haven't explored which books specifically
-          are getting banned. As a first step, let's take a look at the titles of the top ten most banned books.
+          To get an initial sense of what kinds of books are being banned, let's examine and explore their titles.
+          Below are the titles of the top ten most banned books.
         </p>
         <h5 data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" data-aos-duration="2000">Top Ten Most Banned Books</h5>
         <div>
          <svg id="topTenBarChart"></svg>
         </div> 
-        <p>
+        <p style="margin-top: 50px;">
           From this simple overview we can already gain insight into what kinds of books are being targeted.
           One can reasonably infer that top two most banned titles, "Gender Queer: A Memoir" and
-          "All Boys Aren't Blue" are about or have themes of queerness and sexual orientation.
+          "All Boys Aren't Blue" not only are about or have themes of queerness and sexual orientation,
+          but were also likely written with the intention of helping LGBTQ+ kids feel more included and less othered.
           Looking at number 7, "The Absolutely True Diary of a Part-Time Indian", also reveals that
           themes of indigenous culture and Native American authors have been targeted as well. Let's now dive a little
           deeper and conduct a more systematic analysis of the most commonly shared words across
@@ -296,15 +292,49 @@
           racial divide, while the titles of the books with “black” are related to the black
           American experience and uplifting the marginalized voices of the community. It is certainly
           no longer a coincidence that the states that are leading the charge in these book bannings are
-          and have been known to be very much right-leaning.
+          and have been known to be very much right-leaning. It does not actually seem as though
+          these banned books are causing harm or are being banned for the reasons laid out by the
+          states — more so that the books don't fit into what they deem to be in line with their
+          political values. 
         </p>
 
       </div>
-      <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section" id="bookSearchContainer">
-
-        <h4>Search and Explore</h4>
+      <div class="section">
+        <h4>Conclusion</h4>
         <p>
-          Is there a book or author that you'd like to see whether it is banned or not? Search below!
+          We have observed a heavy underlying theme in the onset of these bans: strong demands in historically Republican states
+          to remove books that explore topics including race, sexual identity, civil rights, resulting in further isolation
+          of students from historically marginalized backgrounds, with stories that perhaps once gave them a feeling of belonging, now disappearing from shelves.
+          Thankfully, these actions are not met without resistance from the local community — we have also found that for every story criticizing the decisions made by
+          district leadership, there are uplifting stories of local communities and
+          organizations coming together to fight back against the injustice.
+        </p>
+        <p>
+          For example, in early March of 2023, two organizations (MomsRising.org and JaxbyJax Literary Arts Festival)
+              are <a href="https://www.news4jax.com/news/local/2023/03/05/2-organizations-offer-children-books-banned-at-schools/" target="_blank" rel="noopener noreferrer">
+                partnering up </a> to provide Duval County students access to books that have already been banned.  Last month, Jacksonville bookstore 
+              <a href="https://www.firstcoastnews.com/article/news/education/jacksonville-bookstore-banned-book-display-duval-county/77-99525142-85d6-48a4-90f7-135b05cbb873" target="_blank" rel="noopener noreferrer">
+              Chamblin Bookmine </a> proudly put up a “Books Recently Banned in Duval County” display.
+            </p>
+        <p>
+         In Texas, NEISD has been heavily criticized by the <a href="https://www.sacurrent.com/news/san-antonios-north-east-isd-banned-more-books-than-any-other-texas-school-district-report-shows-29582596" target="_blank" rel="noopener noreferrer">
+            ACLU and its teacher's union</a> for its compliance with Krause's demands and in late August of 2022, students of the
+            district banded together to sign a <a href="https://www.change.org/p/north-east-independent-school-district-remove-the-krause-list-from-all-neisd-schools?redirect=false" target="_blank" rel="noopener noreferrer">
+            petition</a> decrying NEISD's restriction of their access to reading material on 
+            critical social and racial issues, safe sex resources, and LGBTQ relationships. 
+            Details of NEISD's decision to keep or remove particular titles from Krause's list can be found <a href="https://www.neisd.net/Page/34461" target="_blank" rel="noopener noreferrer">
+            here</a>.
+        </p>
+        <p>We hope that there is further justice from the community to unban the books
+          that give the underrepresented and marginalized communities a sense of belonging. We also hope 
+          that this data explainer and its visualizations have helped for gaining a better understanding of
+          this recent spur in book bans across America.
+        </p>
+      </div>
+      <div data-aos="fade-left" data-aos-easing="ease-in-back" data-aos-duration="1500" class="section" id="bookSearchContainer">
+        <h4>Have a book you're curious to see if it is banned or not?</h4>
+        <p>
+          Type in the title or author of any book to see if it has been banned by any school districts.
         </p>
         <div id="bookSearchList">
           <input type="text" class="search" placeholder="Search Book Title, Author"/>

@@ -36,15 +36,9 @@ topTenChart.append("g") // append group to svg
     .style("font-size", 10);
 
 const yScale = d3.scaleBand()
-.domain(topTenData.sort((a, b) => d3.descending(a.count, b.count)).map(d => d.title)) // sort by descending frequency
+.domain(topTenData.sort((a, b) => d3.descending(a.count, b.count)).reverse().map(d => d.title)) // sort by descending frequency
 .range([height, 0])
 .padding(0.1);
-
-
-// add add y-axis
-topTenChart.append("g")
-    .attr('transform', `translate(${margin.left}, ${margin.top})`)
-    .call(d3.axisLeft(yScale));
 
 
 // add x-axis title
@@ -64,12 +58,20 @@ topTenChart.append("text")
     barGroup2.selectAll("rect")
     .data(topTenData)
     .join("rect")
-    .attr("x", d => xScale(d.count))
+    .attr("x", d => xScale(0))
     .attr("y", d => yScale(d.title))
-    .attr("width", d => width - xScale(d.count) )
+    .attr("width", d => xScale(d.count) )
     .attr("height", yScale.bandwidth()) //
     .attr("fill", "#ed937e")
+
+    // add add y-axis
+    topTenChart.append("g")
+        .attr('transform', `translate(${margin.left}, ${margin.top})`)
+        .call(d3.axisLeft(yScale));
     
 }
+
+
+
 initializeElements();
 
