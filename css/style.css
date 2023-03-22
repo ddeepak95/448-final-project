@@ -1,3 +1,47 @@
+.mobile-message {
+  background-color: #ffffffe5;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  margin-top: 0px;
+  top: 0px;
+}
+
+.mobile-message button {
+  margin: auto;
+  display: block;
+  font-size: 1.4em;
+  /* padding: 10px 20px; */
+  height: 50px;
+}
+
+.mobile-message p {
+  color: white;
+  text-align: center;
+  line-height: 1.8em;
+  font-size: 1.8em;
+  width: 300px;
+  margin: 100px auto 20px;
+}
+
+.mobile-message p span {
+  background-color: #1d1d1d;
+  padding: 0.5rem 0;
+  -webkit-box-shadow: 1rem 0px 0px #1d1d1d, -1rem 0px 0px #1d1d1d;
+  box-shadow: 1rem 0px 0px #1d1d1d, -1rem 0px 0px #1d1d1d;
+  -webkit-box-decoration-break: clone;
+  -moz-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@media (min-width: 801px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .mobile-message {
+    display: none;
+  }
+}
+
 .container {
   margin-top: 100px;
 }
