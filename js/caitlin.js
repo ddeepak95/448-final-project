@@ -24,7 +24,7 @@ d3.json('../data/states-albers-10m.json')
     })
 
 function onReady() {
-const color = d3.scaleLinear().domain([0, 900]).range(["#f2e3e1", "#e15759"])
+const color = d3.scaleLinear().domain([0, 801]).range(["#f0adae", "#e15759"])
 const commaFormat = d3.format(",")
 const path = d3.geoPath()
 
@@ -49,7 +49,7 @@ function getDistrictBreakdownGraph(state_districts) {
 
 
 function drawBarChart (data, chartTitle) {
-    const margin = ({top: 40, right: 20, bottom: 140, left: 100}) // save room for axis labels
+    const margin = ({top: 40, right: 100, bottom: 140, left: 110}) // save room for axis labels
     const svgWidth = 220 + data.length * 10
     const svgHeight = 400 
     const width = svgWidth - margin.left - margin.right
@@ -96,20 +96,20 @@ function drawBarChart (data, chartTitle) {
     
     // add x-axis title
     barChart.append("text")
-      .attr("x", margin.left + width / 2)
-      .attr("y", svgHeight - 5)
+      .attr("x", margin.left + width + 30)
+      .attr("y", svgHeight - 130)
       .attr("text-anchor", "middle")
-      .attr("font-size", "14px")
+      .attr("font-size", "11px")
       .text("District");
       
     
     // add y-axis title, remember that all transformations are around the (0, 0) origin
     barChart.append("text")
       .attr("x", -(margin.top + height / 2)) // move to center of lefthand side
-      .attr("y", 15)
+      .attr("y", 55)
       .attr("transform", "rotate(-90)")  // rotate it by -90 degrees
       .attr("text-anchor", "middle")
-      .attr("font-size", "14px")
+      .attr("font-size", "11px")
       .text("Number of Bans");
     
     // draw the rectangles here
@@ -181,7 +181,7 @@ function tabulate(data, columns) {
 }
 
 
-
+// callout and map code blocks modified from https://observablehq.com/@robertmreedy/fivethirtyeight-2020-presidential-election-forecast
 const callout14 = (g, value) => {
     if (!value) return g.style("display", "none"); 
     g
@@ -223,7 +223,16 @@ const callout14 = (g, value) => {
         .selectAll("path")
         .data(topojson.feature(us, us.objects.states).features)
         .join("path")
-        .attr("fill", function(d){  return color(num_bans_per_state.get(d.properties.name))}
+        .attr("fill", function(d){  
+            if (num_bans_per_state.get(d.properties.name) == 0) {
+                return "#dedcdc"
+            } 
+            else {
+                return color(num_bans_per_state.get(d.properties.name))
+
+            }
+            
+        }
             )
         .attr("d", path)
         .append("title")
