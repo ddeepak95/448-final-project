@@ -218,14 +218,18 @@
         <h4>What kinds of books are being targeted?</h4>
         <p>
           To get an initial sense of what kinds of books are being banned, let's examine and explore their titles.
-          Below are the titles of the top ten most banned books.
+          Below are the titles of the most banned books, ordered from most frequently banned to least. Clicking on
+          a title will show the districts and states in which it is banned. You can also
+          search for any title or author you are interested in seeing whether it has been banned or not.
         </p>
-        <h5>Top Ten Most Banned Books</h5>
-        <div>
-         <svg id="topTenBarChart"></svg>
+        <h5>Titles of the Most Banned Books</h5>
+        <div id="bookSearchList">
+          <input type="text" class="search" placeholder="Search Book Title, Author"/>
+          <ul class="list accordion-container"></ul>
+          <ul class="pagination"></ul>
         </div> 
         <p style="margin-top: 50px;">
-          From this simple overview we can already gain insight into what kinds of books are being targeted.
+          Looking at even just the top ten titles allows us to gain insight on what kinds of books are being targeted.
           One can reasonably infer that top two most banned titles, "Gender Queer: A Memoir" and
           "All Boys Aren't Blue" not only are about or have themes of queerness and sexual orientation,
           but were also likely written with the intention of helping LGBTQ+ kids feel more included and less othered.
@@ -336,17 +340,6 @@
           that this data explainer and its visualizations have helped for gaining a better understanding of
           this recent spur in book bans across America.
         </p>
-      </div>
-      <div class="section" id="bookSearchContainer">
-        <h4>Have a book you're curious to see if it is banned or not?</h4>
-        <p>
-          Type in the title or author of any book to see if it has been banned by any school districts.
-        </p>
-        <div id="bookSearchList">
-          <input type="text" class="search" placeholder="Search Book Title, Author"/>
-          <ul class="list accordion-container"></ul>
-          <ul class="pagination"></ul>
-        </div>
       </div>
       <div class="section references">
         <h4>Resources</h4>
